@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 850a1ea1c478c7b429de7a41903cb195, type: 3}
+  m_Name: PackageTable
+  m_EditorClassIdentifier: 
+  Datalist:
+  - id: 0
+    type: 0
+    star: 0
+    itemName: 
+    description: 
+    skillDescription: 
+    imagePath: 
+  - id: 1
+    type: 1
+    star: 4
+    itemName: "\u94DC\u5251"
+    description: "\u5F88\u597D\u7684\u94DC\u5251"
+    skillDescription: "\u94DC\u5251\u7684\u6280\u80FD\u63CF\u8FF0"
+    imagePath: "Assets/Resources/\u6B66\u5668Icon\u7D20\u6750/Icons/Iicon_32_01.png"
+  - id: 2
+    type: 1
+    star: 4
+    itemName: "\u94DC\u5BBD\u5251"
+    description: "\u5F88\u597D\u7684\u94DC\u5BBD\u5251"
+    skillDescription: "\u94DC\u5BBD\u5251\u7684\u6280\u80FD\u63CF\u8FF0"
+    imagePath: "Assets/Resources/\u6B66\u5668Icon\u7D20\u6750/Icons/Iicon_32_02.png"
+  - id: 3
+    type: 1
+    star: 4
+    itemName: "\u94DC\u957F\u5251"
+    description: "\u5F88\u597D\u7684\u94DC\u957F\u5251"
+    skillDescription: "\u94DC\u957F\u5251\u7684\u6280\u80FD\u63CF\u8FF0"
+    imagePath: "Assets/Resources/\u6B66\u5668Icon\u7D20\u6750/Icons/Iicon_32_03.png"
+  - id: 4
+    type: 1
+    star: 4
+    itemName: "\u94DC\u5F2F\u5251"
+    description: "\u5F88\u597D\u7684\u94DC\u5F2F\u5251"
+    skillDescription: "\u94DC\u5F2F\u5251\u7684\u6280\u80FD\u63CF\u8FF0"
+    imagePath: "Assets/Resources/\u6B66\u5668Icon\u7D20\u6750/Icons/Iicon_32_04.png"
+  - id: 5
+    type: 1
+    star: 5
+    itemName: "\u592A\u9633\u5251"
+    description: "\u5F88\u597D\u7684\u592A\u9633\u5251"
+    skillDescription: "\u592A\u9633\u7684\u6280\u80FD\u63CF\u8FF0"
+    imagePath: "Assets/Resources/\u6B66\u5668Icon\u7D20\u6750/Icons/Iicon_32_06.png"
