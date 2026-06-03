@@ -127,6 +127,50 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4325294620676814435, guid: cabaf7be0286d484eb25af7a5aa2281f, type: 3}
   m_PrefabInstance: {fileID: 5074031315830088933}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &74643780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 74643782}
+  - component: {fileID: 74643781}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &74643781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74643780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98762016ee7247746b597fa0724303fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &74643782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74643780}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1331.2932, y: -72.44103, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,6 +1651,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4925486656524566978, guid: cabaf7be0286d484eb25af7a5aa2281f, type: 3}
+      propertyPath: packageUIItemPrefab
+      value: 
+      objectReference: {fileID: 8734053167999888430, guid: 95fe01a7171842c4d86ccc947efae72c, type: 3}
     - target: {fileID: 4956454292080350553, guid: cabaf7be0286d484eb25af7a5aa2281f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2560,3 +2608,4 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 1069470678}
   - {fileID: 747425060}
+  - {fileID: 74643782}

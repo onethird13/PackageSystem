@@ -22,7 +22,7 @@ public class GMCommand
     {
         //创建数据
         PackageLocalData.Instance.items = new List<PackageLocalItem>();
-        for (int i=1;i<4;i++)
+        for (int i=1;i<=5;i++)
         {
             PackageLocalItem packageLocalItem = new PackageLocalItem()
             {
@@ -30,7 +30,7 @@ public class GMCommand
                 level = i,
                 num = i,
                 uid = Guid.NewGuid().ToString(),
-                isNew =  false,
+                isNew =  true,
             };
             PackageLocalData.Instance.items.Add(packageLocalItem);
         }

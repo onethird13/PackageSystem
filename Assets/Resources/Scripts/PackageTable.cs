@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PackageTable", menuName = "Scriptable Objects/Package Table")]
+
 public class PackageTable:ScriptableObject
 {
+    ///<summary>
+    /// 储存静态数据的列表
+    /// </summary>
+    
    public List<PackageTableItem> Datalist = new List<PackageTableItem>();
 }
 
