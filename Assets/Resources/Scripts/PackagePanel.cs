@@ -28,6 +28,20 @@ public class PackagePanel:BasePanel
     private Transform UIDeleteConfirmBtn;
 
     [SerializeField] private GameObject packageUIItemPrefab;
+    private string _choosedUid;
+
+    public string ChoosedUid
+    {
+        get
+        {
+            return _choosedUid;
+        }
+        set
+        {
+            _choosedUid = value;
+            RefreshDetail();    
+        }
+    }
 
     private void Awake()
     {
@@ -43,6 +57,15 @@ public class PackagePanel:BasePanel
     {
         RefreshScroll();
         
+    }
+
+    private void RefreshDetail()
+    {
+        //拿到数据
+        PackageLocalItem packageLocalItem=GameManager.instance.GetPackageLocalItemByUid(ChoosedUid);
+        PackageTableItem packageTableItem=GameManager.instance.GetPackageItemById(packageLocalItem.id);
+        //刷新内容
+        UIDetailPanel.GetComponent<PackageDetail>().RefreshUI(packageLocalItem,this);
     }
 
     private void RefreshScroll()

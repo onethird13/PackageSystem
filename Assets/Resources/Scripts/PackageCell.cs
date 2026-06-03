@@ -23,14 +23,24 @@ public class PackageCell:MonoBehaviour,IPointerClickHandler,IPointerEnterHandler
     //父物体
     private PackagePanel uiParent;
 
+    [SerializeField] private Transform SelectedAni;
+    [SerializeField] private Transform passThroughAni;
+
     private void Awake()
     {
         InitUI();
     }
 
+    private void Start()
+    {
+        SelectedAni.gameObject.SetActive(false);
+        passThroughAni.gameObject.SetActive(false);
+    }
+
     private void InitUI()
     {
         InitUIName();
+        
     }
 
     private void InitUIName()
@@ -88,16 +98,36 @@ public class PackageCell:MonoBehaviour,IPointerClickHandler,IPointerEnterHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        throw new NotImplementedException();
+        SelectedAni.gameObject.SetActive(true);
+        SelectedAni.GetComponent<Animator>().SetTrigger("Selected");
+        if (this.uiParent.ChoosedUid == packageLocalItem.uid)
+        {
+            return;
+        }
+        //根据点击设置新的数据
+        this.uiParent.ChoosedUid=packageLocalItem.uid;
+       
+        
     }
 
+    private const string IN = "In";
+    private const string OUT = "Out";
+    private bool isOpened;
     public void OnPointerEnter(PointerEventData eventData)
     {
-        throw new NotImplementedException();
+        if (isOpened==false)
+        {
+            passThroughAni.gameObject.SetActive(true);
+            passThroughAni.GetComponent<Animator>().SetTrigger(IN);
+            isOpened=true; 
+        }
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        throw new NotImplementedException();
+        Debug.Log("Exit");
+        passThroughAni.GetComponent<Animator>().SetTrigger(OUT);
+        isOpened=false;
     }
 }

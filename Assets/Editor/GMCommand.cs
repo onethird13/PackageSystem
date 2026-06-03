@@ -53,5 +53,11 @@ public class GMCommand
     {
         UIManager.Instance.OpenPanel(UIManager.UIConst.PackagePanel);
     }
+
+    [MenuItem("GMCommand/传入详情页面数据")]
+    public static void OpenDetailedPanel()
+    {
+        
+    }
     
 }
