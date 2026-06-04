@@ -110,8 +110,6 @@ public class UIManager
         panelDict.Add(panelName, panel);
         panel.OpenPanel(panelName);
         return panel;
-
-
     }
 
     public BasePanel ClosePanel(string panelName)

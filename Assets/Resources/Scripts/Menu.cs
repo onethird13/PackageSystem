@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu : MonoBehaviour
+public class Menu:BasePanel
 {
     [SerializeField] private Button lotteryButton;
     [SerializeField] private Button openPackageButton;

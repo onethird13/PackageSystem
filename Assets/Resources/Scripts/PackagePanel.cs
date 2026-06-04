@@ -6,6 +6,18 @@ using UnityEngine.UI;
 
 public class PackagePanel:BasePanel
 {
+    
+    public enum PackageState 
+    {
+        Normal,
+        Delete
+    }
+    public PackageState state = PackageState.Normal;
+    public List<string> deleteChoosedUids = new List<string>();
+    
+    
+    
+    
     private Transform UIMenu;
     private Transform UITopMenusWeapon;
     private Transform UITopMenusFood;
@@ -15,6 +27,7 @@ public class PackagePanel:BasePanel
     private Transform UICloseBtn;
     /*------------centUIer------------*/
     private Transform UIScrollView;
+    private Transform UIScrollContent;
     private Transform UIDetailPanel;
     private Transform UILeftBtn;
     private Transform UIRightBtn;
@@ -28,17 +41,17 @@ public class PackagePanel:BasePanel
     private Transform UIDeleteConfirmBtn;
 
     [SerializeField] private GameObject packageUIItemPrefab;
-    private string _choosedUid;
+    private string _deleteChoosedUid;
 
-    public string ChoosedUid
+    public string DeleteChoosedUid
     {
         get
         {
-            return _choosedUid;
+            return _deleteChoosedUid;
         }
         set
         {
-            _choosedUid = value;
+            _deleteChoosedUid = value;
             RefreshDetail();    
         }
     }
@@ -62,7 +75,7 @@ public class PackagePanel:BasePanel
     private void RefreshDetail()
     {
         //拿到数据
-        PackageLocalItem packageLocalItem=GameManager.instance.GetPackageLocalItemByUid(ChoosedUid);
+        PackageLocalItem packageLocalItem=GameManager.instance.GetPackageLocalItemByUid(DeleteChoosedUid);
         PackageTableItem packageTableItem=GameManager.instance.GetPackageItemById(packageLocalItem.id);
         //刷新内容
         UIDetailPanel.GetComponent<PackageDetail>().RefreshUI(packageLocalItem,this);
@@ -82,6 +95,28 @@ public class PackagePanel:BasePanel
             GameObject uiItem = GameObject.Instantiate(packageUIItemPrefab, content, false);
             PackageCell packageCell = uiItem.GetComponent<PackageCell>();
             packageCell.RefreshCell(item,this);
+        }
+    }
+    //添加删除物品
+    public void AddDeleteChooseUid(string uid)
+    {
+        if (deleteChoosedUids.Contains(uid))
+        {
+            deleteChoosedUids.Remove(uid);
+        }
+        else
+        {
+            deleteChoosedUids.Add(uid);
+        }
+        
+    }
+    //刷新滚动容器中的物品的删除选中状态
+    public void RefreshDeletePanel()
+    {
+        foreach (Transform child in UIScrollContent )
+        {
+            PackageCell packageCell = child.GetComponent<PackageCell>();
+            packageCell.RefreshDeleteState();
         }
     }
     
@@ -120,6 +155,9 @@ public class PackagePanel:BasePanel
     private void DeleteBtnOnClick()
     {
         UIDeletePanel.gameObject.SetActive(true);
+        state = PackageState.Delete;
+        
+
     }
 
     private void DetailBtnOnClick()
@@ -129,11 +167,17 @@ public class PackagePanel:BasePanel
     private void DeleteBackBtnOnClick()
     {
         UIDeletePanel.gameObject.SetActive(false);
+        state = PackageState.Normal;
+        deleteChoosedUids.Clear();  
+        RefreshDeletePanel();
     }
 
     private void DeleteConfirmBtnOnClick()
     {
         UIDeletePanel.gameObject.SetActive(false);
+        GameManager.instance.DeletePackageItems(deleteChoosedUids);
+        //删除完刷新
+        RefreshUI();
     }
     
     private void InitClick()
@@ -147,6 +191,7 @@ public class PackagePanel:BasePanel
         UIDetailBtn.GetComponent<Button>().onClick.AddListener(DetailBtnOnClick);
         UIDeleteBackBtn.GetComponent<Button>().onClick.AddListener(DeleteBackBtnOnClick);
         UIDeleteConfirmBtn.GetComponent<Button>().onClick.AddListener(DeleteConfirmBtnOnClick);
+        
     }
 
     private void InitUIName()
@@ -171,6 +216,7 @@ public class PackagePanel:BasePanel
         UIInfoIcon = transform.Find("Bottom/DeletePanel/InfoIcon");
         UIInfoText = transform.Find("Bottom/DeletePanel/InfoText");
         UIDeletePanel = transform.Find("Bottom/DeletePanel");
+        UIScrollContent = transform.Find("Center/ScrollView/Viewport/Content");
         
         UIDeletePanel.gameObject.SetActive(false);
 

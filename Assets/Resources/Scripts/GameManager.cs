@@ -19,6 +19,23 @@ public class GameManager : MonoBehaviour
     {
         /*UIManager.Instance.OpenPanel(UIManager.UIConst.PackagePanel);*/
         GetPackageTable();
+        UIManager.Instance.OpenPanel(UIManager.UIConst.Menu);
+    }
+
+    public void DeletePackageItems(List<string> uids)
+    {
+        foreach (string uid in uids)
+        {
+            foreach ( PackageLocalItem item in PackageLocalData.Instance.items)
+            {
+                if (uid == item.uid)
+                {
+                    PackageLocalData.Instance.items.Remove(item);
+                    PackageLocalData.Instance.SavePackage();
+                    break;
+                }
+            }
+        }
     }
 
     public PackageTable GetPackageTable()
@@ -50,7 +67,7 @@ public class GameManager : MonoBehaviour
     //得到动态数据，根据uid
     public PackageLocalItem GetPackageLocalItemByUid(string uid)
     {
-        List<PackageLocalItem> items = PackageLocalData.Instance.items;
+        List<PackageLocalItem> items = PackageLocalData.Instance.LoadPackage();
         foreach (var i in items)
         {
             if (i.uid == uid)

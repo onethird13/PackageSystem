@@ -53,6 +53,19 @@ public class PackageCell:MonoBehaviour,IPointerClickHandler,IPointerEnterHandler
         UILevelText = transform.Find("Buttom/LevelText");
         UIStars = transform.Find("Buttom/Stars");
     }
+
+    public void RefreshDeleteState()
+    {
+        PackagePanel packagePanel = uiParent.GetComponent<PackagePanel>();
+        if (packagePanel.deleteChoosedUids.Contains(packageLocalItem.uid))
+        {
+            UIDeleteSelect.gameObject.SetActive(true);
+        }
+        else
+        {
+            UIDeleteSelect.gameObject.SetActive(false);
+        }
+    }
     
     
     public void RefreshCell(PackageLocalItem localItem,PackagePanel uiParent)
@@ -100,12 +113,25 @@ public class PackageCell:MonoBehaviour,IPointerClickHandler,IPointerEnterHandler
     {
         SelectedAni.gameObject.SetActive(true);
         SelectedAni.GetComponent<Animator>().SetTrigger("Selected");
-        if (this.uiParent.ChoosedUid == packageLocalItem.uid)
+        PackagePanel packagePanel = uiParent.GetComponent<PackagePanel>();
+        Debug.Log(packagePanel.state);
+        if (packagePanel.state == PackagePanel.PackageState.Normal)
         {
-            return;
+          
+            if (this.uiParent.DeleteChoosedUid == packageLocalItem.uid)
+            {
+                return;
+            }
+            //根据点击设置新的数据
+            this.uiParent.DeleteChoosedUid=packageLocalItem.uid;
         }
-        //根据点击设置新的数据
-        this.uiParent.ChoosedUid=packageLocalItem.uid;
+        else if (packagePanel.state == PackagePanel.PackageState.Delete)
+        {
+            packagePanel.AddDeleteChooseUid(packageLocalItem.uid);
+            RefreshDeleteState();
+            
+        }
+        
        
         
     }

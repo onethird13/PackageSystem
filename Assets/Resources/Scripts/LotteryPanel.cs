@@ -30,9 +30,12 @@ public class LotteryPanel : BasePanel
 
     private void OnLottery1BtnClick()
     {
+            PackageLocalItem item = GameManager.instance.LotteryRandom1();
             center.GetChild(0).gameObject.SetActive(true);
-            center.GetChild(0).GetComponent<LotteryCell>().PackageLocalItem = GameManager.instance.LotteryRandom1();
+            center.GetChild(0).GetComponent<LotteryCell>().PackageLocalItem = item;
             center.GetChild(0).GetComponent<LotteryCell>().RefreshUI();
+            PackageLocalData.Instance.items.Add(item);
+            PackageLocalData.Instance.SavePackage();
         
     }
 
@@ -41,8 +44,11 @@ public class LotteryPanel : BasePanel
         for (int i = 0; i < center.childCount; i++)
         {
             center.GetChild(i).gameObject.SetActive(true);
-            center.GetChild(i).GetComponent<LotteryCell>().PackageLocalItem = GameManager.instance.LotteryRandom1();
+            PackageLocalItem item=GameManager.instance.LotteryRandom1();
+            center.GetChild(i).GetComponent<LotteryCell>().PackageLocalItem = item;
             center.GetChild(i).GetComponent<LotteryCell>().RefreshUI();
+            PackageLocalData.Instance.items.Add(item);
+            PackageLocalData.Instance.SavePackage();
         }
     }
 
