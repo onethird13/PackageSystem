@@ -20,7 +20,8 @@ public class PackageLocalData
         }
     }
 
-    public List<PackageLocalItem> items;
+    public List<PackageLocalItem> items=new List<PackageLocalItem>();
+    
 
     public void SavePackage()
     {

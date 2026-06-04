@@ -106,6 +106,7 @@ public class PackagePanel:BasePanel
     private void CloseBtnOnClick()
     {
         UIManager.Instance.ClosePanel(UIManager.UIConst.PackagePanel);
+        UIManager.Instance.OpenPanel(UIManager.UIConst.Menu);
     }
 
     private void LeftBtnOnClick()

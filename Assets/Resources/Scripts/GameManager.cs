@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         /*UIManager.Instance.OpenPanel(UIManager.UIConst.PackagePanel);*/
+        GetPackageTable();
     }
 
     public PackageTable GetPackageTable()
@@ -64,6 +67,52 @@ public class GameManager : MonoBehaviour
         items.Sort(new PackageItemComparer());
         return items;
     }
+    //根据类型找静态数据的表
+    public List<PackageTableItem> GetPackageTableDataByType(int type)
+    {
+        List<PackageTableItem> items=new List<PackageTableItem>();
+        foreach (var item in GetPackageTable().Datalist )
+        {
+            if (item.type == type)
+            {
+                items.Add(item);
+            }
+        }
+        return items;
+    }
+    //单抽
+    public PackageLocalItem LotteryRandom1()
+    {
+        //先拿到所有武器type
+     List<PackageTableItem> items= GetPackageTableDataByType(GameTypeConst.WEAPON);
+     //随机拿到一个里面的东西
+     PackageTableItem item = null;
+     int index=UnityEngine.Random.Range(0,items.Count);
+     item = items[index];
+     PackageLocalItem packageLocalItem=new PackageLocalItem()
+     {
+         id = item.id,
+         uid=System.Guid.NewGuid().ToString(),
+         num=1,
+         level = 1,
+         isNew = false
+     };
+     PackageLocalData.Instance.items.Add(packageLocalItem);
+     PackageLocalData.Instance.SavePackage();
+     return packageLocalItem;
+    }
+    //十连抽
+    public List<PackageLocalItem> LotteryRandom10()
+    {
+        List<PackageLocalItem> items=new List<PackageLocalItem>();
+        for (int i = 0; i < 10; i++)
+        {
+            items[i] = LotteryRandom1();
+            PackageLocalData.Instance.items.Add(items[i]);
+        }
+        items.Sort(new PackageItemComparer());
+        return items;
+    }
 
 }
 
@@ -87,6 +136,12 @@ public class PackageItemComparer : IComparer<PackageLocalItem>
         //星级，id一样，按等级排序
         return y.level.CompareTo(x.level);
     }
+}
+
+public class GameTypeConst
+{
+    public const int WEAPON = 1;
+    public const int FOOD = 2;
 }
 
 

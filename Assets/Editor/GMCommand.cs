@@ -35,7 +35,7 @@ public class GMCommand
             PackageLocalData.Instance.items.Add(packageLocalItem);
         }
         PackageLocalData.Instance.SavePackage();
-        
+        Debug.Log("Local");
     }
 
     [MenuItem("GMCommand/读取本地背包数据")]

@@ -62,6 +62,8 @@ public class UIManager
         pathDict = new Dictionary<string, string>()
         {
             {UIConst.PackagePanel,"Package/PackagePanel"},
+            {UIConst.Menu,"Package/Menu"},
+            {UIConst.LotteryPanel,"Package/LotteryPanel"},
         };
         prefabDict = new Dictionary<string, GameObject>();
     }
@@ -127,7 +129,10 @@ public class UIManager
 public class UIConst
 {
    public const string PackagePanel="PakagePanel";
-    
+   public const string Menu="Menu";
+   public const string LotteryPanel = "LotteryPanel";
+   
+
 }
 
 

@@ -26,7 +26,7 @@ public class PackageDetail : MonoBehaviour
 
     private void Awake()
     {
-        Test();
+        /*Test();*/
     }
 
     private void Test()
