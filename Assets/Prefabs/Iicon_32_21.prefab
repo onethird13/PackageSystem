@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4538914400502383433}
   - component: {fileID: 6871824065398820164}
+  - component: {fileID: 2947028567240836474}
   m_Layer: 0
   m_Name: Iicon_32_21
   m_TagString: Untagged
@@ -84,3 +85,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2947028567240836474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5510469916377096522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d0e6b29c8322e6429107943bb6cec38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  defence: 0
+  WeaponReference:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
