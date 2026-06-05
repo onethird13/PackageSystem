@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         /*UIManager.Instance.OpenPanel(UIManager.UIConst.PackagePanel);*/
         GetPackageTable();
         /*UIManager.Instance.OpenPanel(UIManager.UIConst.Menu);*/
+        PackageLocalData.Instance.LoadPackage();
     }
 
     private void Update()
@@ -28,6 +29,26 @@ public class GameManager : MonoBehaviour
         {
             UIManager.Instance.OpenPanel(UIManager.UIConst.Menu);
         }
+    }
+
+    public PackageLocalItem GetRandomPackageLocalItem()
+    {
+        int index = UnityEngine.Random.Range(1, 6);
+        PackageTableItem packageTableItem= GetPackageTable().Datalist[index];
+        PackageLocalItem packageLocalItem = new PackageLocalItem()
+        {
+            id = packageTableItem.id,
+            level = Random.Range(1, 100),
+            isNew = true,
+            num = 1,
+            uid = Guid.NewGuid().ToString(),
+        };
+        return packageLocalItem;
+    }
+
+    public void AddPackageLocalItem(PackageLocalItem item)
+    {
+        PackageLocalData.Instance.items.Add(item);
     }
 
     public void DeletePackageItems(List<string> uids)

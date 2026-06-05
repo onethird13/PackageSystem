@@ -16,7 +16,29 @@ namespace XLua
     public partial class DelegateBridge : DelegateBridgeBase
     {
 		
-		public float __Gen_Delegate_Imp0()
+		public ShootResult __Gen_Delegate_Imp0(float p0)
+		{
+#if THREAD_SAFE || HOTFIX_ENABLE
+            lock (luaEnv.luaEnvLock)
+            {
+#endif
+                RealStatePtr L = luaEnv.rawL;
+                int errFunc = LuaAPI.pcall_prepare(L, errorFuncRef, luaReference);
+                ObjectTranslator translator = luaEnv.translator;
+                LuaAPI.lua_pushnumber(L, p0);
+                
+                PCall(L, 1, 1, errFunc);
+                
+                
+                ShootResult __gen_ret = (ShootResult)translator.GetObject(L, errFunc + 1, typeof(ShootResult));
+                LuaAPI.lua_settop(L, errFunc - 1);
+                return  __gen_ret;
+#if THREAD_SAFE || HOTFIX_ENABLE
+            }
+#endif
+		}
+        
+		public float __Gen_Delegate_Imp1()
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -37,7 +59,7 @@ namespace XLua
 #endif
 		}
         
-		public int __Gen_Delegate_Imp1(int p0, string p1, out Tutorial.CSCallLua.DClass p2)
+		public int __Gen_Delegate_Imp2(int p0, string p1, out Tutorial.CSCallLua.DClass p2)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -61,7 +83,7 @@ namespace XLua
 #endif
 		}
         
-		public System.Action __Gen_Delegate_Imp2()
+		public System.Action __Gen_Delegate_Imp3()
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -91,19 +113,24 @@ namespace XLua
 		public override Delegate GetDelegateByType(Type type)
 		{
 		
+		    if (type == typeof(LuaManager.CallShootResult))
+			{
+			    return new LuaManager.CallShootResult(__Gen_Delegate_Imp0);
+			}
+		
 		    if (type == typeof(LuaManager.CallDamage))
 			{
-			    return new LuaManager.CallDamage(__Gen_Delegate_Imp0);
+			    return new LuaManager.CallDamage(__Gen_Delegate_Imp1);
 			}
 		
 		    if (type == typeof(Tutorial.CSCallLua.FDelegate))
 			{
-			    return new Tutorial.CSCallLua.FDelegate(__Gen_Delegate_Imp1);
+			    return new Tutorial.CSCallLua.FDelegate(__Gen_Delegate_Imp2);
 			}
 		
 		    if (type == typeof(Tutorial.CSCallLua.GetE))
 			{
-			    return new Tutorial.CSCallLua.GetE(__Gen_Delegate_Imp2);
+			    return new Tutorial.CSCallLua.GetE(__Gen_Delegate_Imp3);
 			}
 		
 		    return null;

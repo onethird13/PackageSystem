@@ -1,0 +1,22 @@
+local shootInterval=0.2
+local shootSpeed=8
+ShootLogic={}
+function ShootLogic.GetShootResult(Timer)
+    if Timer<shootInterval then
+        return {
+            shouldShoot = false,
+            speed=shootSpeed,
+            direction=CS.UnityEngine.Vector3.zero
+        }
+    end
+    local angel=CS.UnityEngine.Random.value*math.pi*2
+    local dirx=math.cos(angel)
+    local diry=math.sin(angel)
+   
+    return{
+        shouldShoot = true,
+        speed = shootSpeed,
+        direction = CS.UnityEngine.Vector3(dirx,0,diry)
+    }
+end 
+return ShootLogic

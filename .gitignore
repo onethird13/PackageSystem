@@ -20,6 +20,10 @@
 /[Aa]ssets/[Ff]ont/
 /[Aa]ssets/[Ff]ont.meta
 
+# Local asset pack import.
+/[Aa]ssets/[Ss]imple[Nn]ature[Pp]ack/
+/[Aa]ssets/[Ss]imple[Nn]ature[Pp]ack.meta
+
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
 *.blend1
 *.blend1.meta

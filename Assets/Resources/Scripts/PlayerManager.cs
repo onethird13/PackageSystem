@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance{get; private set;}
     public int damage=10;
     public int defence=10;
+    public float moveSpeed = 5f;
     private void Awake()
     {
         if (instance == null)
@@ -35,6 +36,19 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        Transform cameraTransform = Camera.main.transform;
+        Vector3 cameraForward = cameraTransform.forward;
+        Vector3 cameraRight = cameraTransform.right;
+
+        cameraForward.y = 0f;
+        cameraRight.y = 0f;
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        Vector3 moveDirection = (cameraRight * horizontal + cameraForward * vertical).normalized;
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
     }
 }

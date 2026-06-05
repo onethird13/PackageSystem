@@ -5,37 +5,47 @@ using UnityEngine;
 using XLua;
 public class LuaManager : MonoBehaviour
 {
+    public static LuaManager Instance{get;private set;}
     private XLua.LuaEnv luaEnv;
-    private CallDamage callDamage;
+   
+    private CallShootResult callShootResult;
+    [CSharpCallLua]
+    public delegate ShootResult CallShootResult(float timer);
     [CSharpCallLua]
     public delegate float CallDamage();
     private void Start()
     {
-        luaEnv=new XLua.LuaEnv();
-        luaEnv.DoString(@"
-            a=10;
-            print(a+5);
-        ");
-        //lua获取unity信息
-        luaEnv.DoString(@"
-    function CallDamage()    
-    Status=CS.LuaGame.StatusManager()
-        damage=Status:GetDamage()
-        return (damage*10)
-        end 
-        ");
-        //unity call lua 获取计算后的数值
-         callDamage  =luaEnv.Global.Get<CallDamage>("CallDamage");
+        if (Instance==null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            InitLua();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
        
-        
     }
+    
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            var damage = callDamage();
-            Debug.Log($"damage:{damage}");
-        }
+    }
+
+    private void InitLua()
+    {
+        luaEnv=new XLua.LuaEnv();
+        TextAsset luascript = Resources.Load<TextAsset>(
+            "Scripts/Lua/CreatorShootLogic.lua"
+        );
+        LuaTable shootLogic = luaEnv.DoString(luascript.text)[0] as LuaTable;
+        callShootResult = shootLogic.Get<CallShootResult>("GetShootResult");
+    }
+
+    public ShootResult GetCreatorShootResult(float timer)
+    {
+        
+        return callShootResult(timer);
     }
 }
