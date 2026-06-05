@@ -86,6 +86,7 @@ public class UIManager
         if (panelDict.TryGetValue(panelName, out panel))
         {
             Debug.Log(panelName + "已打开");
+            ClosePanel(panelName);
             return panel;
         }
         //检查路径是否配置

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Licon_32Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Licon_32Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d984cb3acb0a5ba48b20fa8098dfd6bf
+  m_SerializeEntries:
+  - m_GUID: e5ff11a11059110498d92454f5fa568b
+    m_Address: Assets/Prefabs/Iicon_32_21.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: b58a7264a4f4f1e4aa4b419ccab66f1b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3d331e967b24a6d40997b882ba3da51d, type: 2}
+    - {fileID: 11400000, guid: ff1081f6adb7b4349a313d004aefe87e, type: 2}

@@ -19,7 +19,15 @@ public class GameManager : MonoBehaviour
     {
         /*UIManager.Instance.OpenPanel(UIManager.UIConst.PackagePanel);*/
         GetPackageTable();
-        UIManager.Instance.OpenPanel(UIManager.UIConst.Menu);
+        /*UIManager.Instance.OpenPanel(UIManager.UIConst.Menu);*/
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            UIManager.Instance.OpenPanel(UIManager.UIConst.Menu);
+        }
     }
 
     public void DeletePackageItems(List<string> uids)

@@ -6,6 +6,7 @@ public class BasePanel : MonoBehaviour
 {
     protected bool isRemoved=false;
     protected  string basePanelName;
+    public bool isOpen = false;
 
     public virtual void SetActive(bool active)
     {
