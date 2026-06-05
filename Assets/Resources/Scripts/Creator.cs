@@ -20,7 +20,8 @@ public class Creator : MonoBehaviour
         }
 
         timer = 0;
-        GameObject weaponGameObject = Instantiate(weaponPrefab, this.transform.position,Quaternion.identity);
+        GameObject weaponGameObject = GameObjectPool.instance.GetGameObject
+            (new Vector3(transform.position.x,transform.position.y+1,transform.position.z),Quaternion.identity);
         weaponGameObject.GetComponent<WeaponGameObject>().Init();
         Rigidbody rb=weaponGameObject.GetComponent<Rigidbody>();
         rb.velocity=result.direction*result.speed;

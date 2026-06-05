@@ -10,7 +10,7 @@ public class WeaponGameObject : MonoBehaviour
 
     private void Awake()
     {
-        lifeTime = 10f;
+       
     }
 
     private void Update()
@@ -18,13 +18,14 @@ public class WeaponGameObject : MonoBehaviour
         lifeTime -= Time.deltaTime;
         if (lifeTime <= 0)
         {
-            Destroy(gameObject);
+            GameObjectPool.instance.Release(this.gameObject);
         }
     }
 
     public void Init()
     {
         item= GameManager.instance.GetRandomPackageLocalItem();
+        lifeTime = 10f;
         
     }
 
@@ -34,9 +35,9 @@ public class WeaponGameObject : MonoBehaviour
         {
             return;
         }
-        Debug.Log(item.id);
+        
         PackageLocalData.Instance.items.Add(item);
        PackageLocalData.Instance.SavePackage();
-        Destroy(gameObject);
+        GameObjectPool.instance.Release(this.gameObject);
     }
 }

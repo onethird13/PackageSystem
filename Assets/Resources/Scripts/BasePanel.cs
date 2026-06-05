@@ -23,7 +23,6 @@ public class BasePanel : MonoBehaviour
     {
         isRemoved=true;
         gameObject.SetActive(false);
-        Destroy(gameObject);
         if (UIManager.Instance.panelDict.ContainsKey(panelName))
         {
             UIManager.Instance.panelDict.Remove(panelName);
